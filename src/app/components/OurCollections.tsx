@@ -10,15 +10,15 @@ const collections = [
       name: "MEN PERFUMES",
     },
     {
-      image: our_collections_2,
+      image: our_collections_4,
       name: "WOMEN PERFUMES",
     },
     {
-      image: our_collections_3,
+      image: our_collections_2,
       name: "GIFT BOXES",     
     },
     {
-      image: our_collections_4,
+      image: our_collections_3,
       name: "TESTING KITS"
     },
 ];
