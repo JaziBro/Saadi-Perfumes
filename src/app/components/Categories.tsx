@@ -1,8 +1,9 @@
 import Image from "next/image";
-import category_1 from "../../../public/images/category-1.png"
-import category_2 from "../../../public/images/category-2.png"
-import category_3 from "../../../public/images/category-3.png"
-import category_4 from "../../../public/images/category-4.png"
+import category_1 from "../../../public/images/categories/category-1.png"
+import category_2 from "../../../public/images/categories/category-2.png"
+import category_3 from "../../../public/images/categories/category-3.png"
+import category_4 from "../../../public/images/categories/category-4.png"
+
 export default function ScentsForEverySeason() {
   const seasons = [
     { name: "Summers", image: category_1 },
@@ -21,7 +22,7 @@ export default function ScentsForEverySeason() {
       {/* Season Grid */}
       <div className="grid grid-cols-2 gap-6 mt-6">
         {seasons.map((season, idx) => (
-          <div key={idx} className="relative">
+          <div key={idx} className="relative transform transition duration-500 hover:scale-110">
             <Image
               alt={season.name}
               width={145}
@@ -36,7 +37,7 @@ export default function ScentsForEverySeason() {
             </div>
           </div>
         ))}
-      </div>
     </div>
+  </div>
   );
 }

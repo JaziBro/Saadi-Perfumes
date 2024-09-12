@@ -1,12 +1,11 @@
-import Image from "next/image";
 import Navbar from "./components/NavBar";
-import our_collections from "../../public/images/our-collections/our-collections-1.jpg";
-import our_collections2 from "../../public/images/our-collections/our-collections-2.png";
 import SummerSale from "./components/SummerSale";
 import BestSellers from "./components/BestSellers";
 import OurCollections from "./components/OurCollections";
-import logo from "./../../public/images/logo.png"
 import Categories from "./components/Categories";
+import { Gift, Headset, ThumbsUp, Star } from "lucide-react";
+import { FaArrowsSpin } from "react-icons/fa6";
+
 
 export default function Home() {
   return (
@@ -37,19 +36,29 @@ export default function Home() {
       <div>
         <Categories/>
       </div>
-      {/* Footer Information */}
+
+      {/* Why Choose Us Section */}
       <div className="mt-20 text-center">
         <div className="text-2xl font-bold text-black">Why Choose Us?</div>
-        <div className="flex justify-center items-center mt-10">
-          <Image className="w-[105px] h-[211px]" src={logo} alt="Icon"/>
-          <div className="ml-4 text-xl font-bold">Complimentary Perfume Sampler with Every Purchase</div>
+        <div className="items-center mt-10">
+          <Gift/>
+          <div className="ml-4 text-xl font-bold">Complimentary Perfume Sample with Every Purchase</div>
+          <FaArrowsSpin />
+          <div className="ml-4 text-xl font-bold">Hassle-Free Returns & Exchanges</div>
+          <Headset/>
+          <div className="ml-4 text-xl font-bold">Personalized Support Just for You</div>
+          <ThumbsUp/>
+          <div className="ml-4 text-xl font-bold">Trusted by 400,000+ Customers Worldwide</div>
+          <Star/>
+
+
         </div>
       </div>
       
      
       
       {/* Footer Links */}
-      <div className="mt-10 text-center">
+      {/* <div className="mt-10 text-center">
         <div className="w-full border-t border-black py-4">
           <div className="tracking-widest text-sm">ORDER INFO</div>
         </div>
@@ -60,7 +69,7 @@ export default function Home() {
           <div className="tracking-widest text-sm">CONTACT US</div>
         </div>
         <div className="text-xs tracking-wide mt-4">©2024 Saadi Signature</div>
-      </div>
+      </div> */}
     </div>
   </div>
 
