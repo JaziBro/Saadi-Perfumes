@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import category_1 from "../../../public/images/categories/category-1.png"
 import category_2 from "../../../public/images/categories/category-2.png"
@@ -22,12 +24,15 @@ export default function ScentsForEverySeason() {
       {/* Season Grid */}
       <div className="grid grid-cols-2 gap-6 mt-6">
         {seasons.map((season, idx) => (
-          <div key={idx} className="relative transform transition duration-500 hover:scale-110">
+          <div
+            key={idx}
+            className="relative overflow-hidden transform transition-transform duration-500 hover:scale-110"
+          >
             <Image
               alt={season.name}
               width={145}
               height={138}
-              className="rounded-lg"
+              className="rounded-lg transform transition-transform duration-500"
               src={season.image}
             />
             <div className="absolute inset-0 flex justify-center items-center">
@@ -37,7 +42,7 @@ export default function ScentsForEverySeason() {
             </div>
           </div>
         ))}
+      </div>
     </div>
-  </div>
   );
 }

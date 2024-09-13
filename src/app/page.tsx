@@ -3,9 +3,9 @@ import SummerSale from "./components/SummerSale";
 import BestSellers from "./components/BestSellers";
 import OurCollections from "./components/OurCollections";
 import Categories from "./components/Categories";
-import { Gift, Headset, ThumbsUp, Star } from "lucide-react";
+import { Gift, Headset, ThumbsUp, Star} from "lucide-react";
 import { FaArrowsSpin } from "react-icons/fa6";
-
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -33,43 +33,39 @@ export default function Home() {
       </div>
 
       {/*Scents from every season section*/}
-      <div>
+      <div className="mt-6">
         <Categories/>
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="mt-20 text-center">
-        <div className="text-2xl font-bold text-black">Why Choose Us?</div>
-        <div className="items-center mt-10">
-          <Gift/>
-          <div className="ml-4 text-xl font-bold">Complimentary Perfume Sample with Every Purchase</div>
-          <FaArrowsSpin />
-          <div className="ml-4 text-xl font-bold">Hassle-Free Returns & Exchanges</div>
-          <Headset/>
-          <div className="ml-4 text-xl font-bold">Personalized Support Just for You</div>
-          <ThumbsUp/>
-          <div className="ml-4 text-xl font-bold">Trusted by 400,000+ Customers Worldwide</div>
-          <Star/>
-
-
+        <div className="mt-10 text-center text-balance">
+          <div className="text-2xl font-bold text-black mb-10">Why Choose Us?</div>
+          <div className="flex flex-col items-center space-y-10">
+            <div className="flex flex-col items-center">
+              <Gift className="w-12 h-12 mb-4" />
+              <div className="text-xl font-bold">Complimentary Perfume Sample with Every Purchase</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <FaArrowsSpin className="w-12 h-12 mb-4" />
+              <div className="text-xl font-bold">Hassle-Free Returns & Exchanges</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <Headset className="w-12 h-12 mb-4" />
+              <div className="text-xl font-bold">Personalized Support Just for You</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <ThumbsUp className="w-12 h-12 mb-4" />
+              <div className="text-xl font-bold">Trusted by 400,000+ Customers Worldwide</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <Star className="w-12 h-12 mb-4" />
+              <div className="text-xl font-bold">20,000+ Glowing 5-Star Reviews</div>
+            </div>
+          </div>
         </div>
-      </div>
       
-     
-      
-      {/* Footer Links */}
-      {/* <div className="mt-10 text-center">
-        <div className="w-full border-t border-black py-4">
-          <div className="tracking-widest text-sm">ORDER INFO</div>
-        </div>
-        <div className="w-full border-t border-black py-4">
-          <div className="tracking-widest text-sm">SIGN UP AND SAVE</div>
-        </div>
-        <div className="w-full border-t border-black py-4">
-          <div className="tracking-widest text-sm">CONTACT US</div>
-        </div>
-        <div className="text-xs tracking-wide mt-4">©2024 Saadi Signature</div>
-      </div> */}
+      {/* Footer Section */}
+        <Footer/>
     </div>
   </div>
 
