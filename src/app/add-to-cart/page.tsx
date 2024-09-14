@@ -1,16 +1,10 @@
-"use client";
-
+"use client"
+import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../components/cart/cartSlice';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from "next/image";
 import { Button } from "../components/ui/button";
-import productImage from "../../../public/images/perfumes/perfume-1.jpg";
-import productImage2 from "../../../public/images/perfumes/perfume-2.jpg";
-import productImage3 from "../../../public/images/perfumes/perfume-3.jpg";
-import productImage4 from "../../../public/images/perfumes/perfume-4.jpg";
-import productImage5 from "../../../public/images/perfumes/perfume-5.jpg";
-import productImage6 from "../../../public/images/perfumes/perfume-6.jpg";
 import Navbar from "../components/NavBar";
 import {
   Select,
@@ -19,95 +13,88 @@ import {
   SelectTrigger,
   SelectValue,
   SelectGroup,
-  SelectLabel
-} from "@/components/ui/select"
-import Footer from '../components/Footer';
+} from "@/components/ui/select";
+import productImage1 from "../../../public/images/perfumes/perfume-1.jpg";
+import productImage2 from "../../../public/images/perfumes/perfume-2.jpg";
+import productImage3 from "../../../public/images/perfumes/perfume-3.jpg";
+import productImage4 from "../../../public/images/perfumes/perfume-4.jpg";
+import productImage5 from "../../../public/images/perfumes/perfume-5.jpg";
+import productImage6 from "../../../public/images/perfumes/perfume-6.jpg";
 
-// Example product data. Ideally, this should be fetched or passed dynamically.
+// Example product data
 const allProducts = [
-  { id: '123', name: 'DAYDREAM', price: 'Rs.3,750', image: productImage.src },
-  { id: '124', name: 'PURE', price: 'Rs.4,500', image: productImage2.src },
-  { id: '125', name: 'LUXE', price: 'Rs.2,500', image: productImage3.src },
-  { id: '126', name: 'EDEN', price: 'Rs.3,750', image: productImage4.src },
-  { id: '127', name: 'ECHO', price: 'Rs.4,500', image: productImage5.src },
-  { id: '128', name: 'SERENE', price: 'Rs.2,500', image: productImage6.src },
+  { id: '123', name: 'DAYDREAM', price: 'Rs.3,750', image: productImage1.src },
+  { id: '124', name: 'PURE', price: 'Rs.3,750', image: productImage2.src },
+  { id: '125', name: 'LUXE', price: 'Rs.3,750', image: productImage3.src },
+  { id: '126', name: 'ECHO', price: 'Rs.3,750', image: productImage4.src },
+  { id: '127', name: 'EDEN', price: 'Rs.3,750', image: productImage5.src },
+  { id: '128', name: 'SERENE', price: 'Rs.3,750', image: productImage6.src },
 ];
 
-export default function AddToCartPage() {
+function ProductDetails() {
   const dispatch = useDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
 
-  // Find the product by ID
+  // Find the product based on productId
   const product = allProducts.find(p => p.id === productId);
 
-  if (!product) {
-    return <div>Product not found</div>;
-  }
-
+  // Function to handle adding product to the cart
   const handleAddToCart = () => {
+    // Ensure product exists before adding to the cart
+    if (!product) {
+      console.error("Product is undefined.");
+      return;
+    }
+    
     dispatch(addToCart({
       id: product.id,
       name: product.name,
       image: product.image,
       price: product.price,
       quantity: 1,
-      width: 24,
-      height: 24
+      width: 24, // Assuming default width
+      height: 24 // Assuming default height
     }));
   };
 
+  // If no product is found, display a message
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col p-4">
+    <div className="flex flex-col items-center w-full max-w-sm">
+      <h1 className="text-4xl font-bold text-left">{product.name}</h1>
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={300}
+        height={300}
+        className="w-full h-auto object-cover rounded-md"
+      />
+      <div className="text-center mt-4">
+        
+        <p className="text-red-600 text-xl font-semibold">{product.price}</p>
+        <Button
+          onClick={handleAddToCart}
+          className="bg-orange-400 text-white py-2 rounded-md w-full mt-3"
+        >
+          Add to Basket
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <div className="min-h-screen flex flex-col p-4 bg-white">
       <Navbar />
-      <div>
-        <h1 className="text-4xl font-bold mb-2 text-left mt-16">{product.name}</h1>          
-        <p className="text-gray-500 font-['Plus Jakarta Sans'] mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolores. Et exercitationem suscipit nostrum officiis expedita corrupti illum eum animi necessitatibus, voluptatem tempora ea quo veniam voluptatum. Totam, illum ullam!</p>       
-
-        <div className='border-black border-t border-b mt-10'>
-          <p className="mb-4 text-center text-gray-700 font-bold text-2xl mt-10">{product.price}</p> 
-          <Button
-            onClick={handleAddToCart}
-            className="bg-black text-white py-2 text-center mb-10 items-center border-collapse rounded-none w-full h-10"
-          >
-            Add to Cart
-          </Button>
-        </div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center w-full mt-4">
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={200}
-          height={100}
-          className="w-52 h-52 object-cover"
-        />    
-        {/* <div className='mt-10'>
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select the quantity" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="apple">1</SelectItem>
-              <SelectItem value="banana">2</SelectItem>
-              <SelectItem value="blueberry">3</SelectItem>
-              <SelectItem value="grapes">4</SelectItem>
-              <SelectItem value="pineapple">5</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        </div>     */}
-
-      </div>
-      <footer className="font-['Plus Plus Jakarta Sans'] text-center text-xs mt-16">
-        © 2024 Saadi Signature
-      </footer>
-      {/* add a select quantity section n then ensure to add the same quantity in cart */}
-       {/* <div className="flex flex-col items-center justify-center w-full mt-4"> */}
-
-</div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductDetails />
+      </Suspense>
+    </div>
   );
 }
