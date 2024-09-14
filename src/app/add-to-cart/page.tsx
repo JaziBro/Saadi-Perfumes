@@ -12,6 +12,16 @@ import productImage4 from "../../../public/images/perfumes/perfume-4.jpg";
 import productImage5 from "../../../public/images/perfumes/perfume-5.jpg";
 import productImage6 from "../../../public/images/perfumes/perfume-6.jpg";
 import Navbar from "../components/NavBar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel
+} from "@/components/ui/select"
+import Footer from '../components/Footer';
 
 // Example product data. Ideally, this should be fetched or passed dynamically.
 const allProducts = [
@@ -23,7 +33,7 @@ const allProducts = [
   { id: '128', name: 'SERENE', price: 'Rs.2,500', image: productImage6.src },
 ];
 
-export default function CheckoutPage() {
+export default function AddToCartPage() {
   const dispatch = useDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -51,36 +61,53 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen flex flex-col p-4">
       <Navbar />
+      <div>
+        <h1 className="text-4xl font-bold mb-2 text-left mt-16">{product.name}</h1>          
+        <p className="text-gray-500 font-['Plus Jakarta Sans'] mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolores. Et exercitationem suscipit nostrum officiis expedita corrupti illum eum animi necessitatibus, voluptatem tempora ea quo veniam voluptatum. Totam, illum ullam!</p>       
+
+        <div className='border-black border-t border-b mt-10'>
+          <p className="mb-4 text-center text-gray-700 font-bold text-2xl mt-10">{product.price}</p> 
+          <Button
+            onClick={handleAddToCart}
+            className="bg-black text-white py-2 text-center mb-10 items-center border-collapse rounded-none w-full h-10"
+          >
+            Add to Cart
+          </Button>
+        </div>
+      </div>
+
       <div className="flex flex-col items-center justify-center w-full mt-4">
         <Image
           src={product.image}
           alt={product.name}
           width={200}
-          height={200}
-          className="w-full max-w-[300px] h-auto object-cover rounded-md"
-        />
-      </div>
-      {/* add a select quantity section n then ensure to add the same quantity in cart */}
-       <div className="flex flex-col items-center justify-center w-full mt-4">
-        <select className="w-full max-w-[300px] p-2 border border-gray-300 rounded-md">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div> 
+          height={100}
+          className="w-52 h-52 object-cover"
+        />    
+        {/* <div className='mt-10'>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select the quantity" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="apple">1</SelectItem>
+              <SelectItem value="banana">2</SelectItem>
+              <SelectItem value="blueberry">3</SelectItem>
+              <SelectItem value="grapes">4</SelectItem>
+              <SelectItem value="pineapple">5</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        </div>     */}
 
-      <div className="mt-4 p-4 bg-white rounded-lg shadow-md w-full max-w-[400px] mx-auto">
-        <h1 className="text-lg font-bold mb-2 text-center">{product.name}</h1>
-        <p className="text-base mb-4 text-center text-gray-700 font-bold">{product.price}</p>
-        <Button
-          onClick={handleAddToCart}
-          className="w-full bg-black text-white py-2 rounded-md text-center"
-        >
-          Add to Cart
-        </Button>
       </div>
-    </div>
+      <footer className="font-['Plus Plus Jakarta Sans'] text-center text-xs mt-16">
+        © 2024 Saadi Signature
+      </footer>
+      {/* add a select quantity section n then ensure to add the same quantity in cart */}
+       {/* <div className="flex flex-col items-center justify-center w-full mt-4"> */}
+
+</div>
   );
 }

@@ -18,7 +18,7 @@ export default function NotFound() {
         {/* Construction Text */}
         <div>
           <p className="text-xl font-semibold mb-2">This Page is Under Construction</p>
-          <p className="text-gray-600">We're working hard to bring this page to you. Please check back later!</p>
+          <p className="text-gray-600">We&apos;re working hard to bring this page to you. Please check back later!</p>
         </div>
       </div>
     </div>
