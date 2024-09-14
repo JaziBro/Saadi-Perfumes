@@ -6,20 +6,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Image from "next/image";
 import { Button } from "../components/ui/button";
 import Navbar from "../components/NavBar";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-} from "@/components/ui/select";
 import productImage1 from "../../../public/images/perfumes/perfume-1.jpg";
 import productImage2 from "../../../public/images/perfumes/perfume-2.jpg";
 import productImage3 from "../../../public/images/perfumes/perfume-3.jpg";
 import productImage4 from "../../../public/images/perfumes/perfume-4.jpg";
 import productImage5 from "../../../public/images/perfumes/perfume-5.jpg";
 import productImage6 from "../../../public/images/perfumes/perfume-6.jpg";
+import rating from "../../../public/images/rating.svg";
+import { toast, useToast } from '@/hooks/use-toast';
 
 // Example product data
 const allProducts = [
@@ -57,6 +51,12 @@ function ProductDetails() {
       width: 24, // Assuming default width
       height: 24 // Assuming default height
     }));
+
+    toast({
+      title: "Product Added to Cart Succesfully!",
+      description: `${product.name} has been added to your cart.`,
+    });
+    
   };
 
   // If no product is found, display a message
@@ -65,24 +65,45 @@ function ProductDetails() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full max-w-sm">
-      <h1 className="text-4xl font-bold text-left">{product.name}</h1>
+    <div className="">
       <Image
         src={product.image}
         alt={product.name}
         width={300}
         height={300}
-        className="w-full h-auto object-cover rounded-md"
+        className="w-full h-auto object-cover rounded-md mt-10"
       />
-      <div className="text-center mt-4">
-        
-        <p className="text-red-600 text-xl font-semibold">{product.price}</p>
+      <Image
+        src={rating}
+        width={24}
+        height={24}
+        alt="Rating"
+        className="w-24 h-24" //Adjusted width and height
+      />
+      <h1 className="text-4xl font-bold text-left mt-2 font-['Plus-Jarakta-Sans'] ">{product.name}</h1>
+      <p className="text-gray-500 font-['Plus-Jarakta-Sans'] text-left mt-5" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat sed cumque maiores repellat quos totam accusantium est quae fugiat, illum tenetur ad quasi neque amet tempore maxime deserunt quam corrupti!</p>
+      <h3 className='text-left font-bold font-[Plus-Jarakta-Sans] mt-5'>Fragrance Notes</h3>
+      <ul className='text-left'>
+        <li className='text-gray-500 font-[Plus-Jarakta-Sans]'>Top: Citrus, Bergamot</li>
+        <li className='text-gray-500 font-[Plus-Jarakta-Sans]'>Heart: Jasmine, Rose</li>
+        <li className='text-gray-500 font-[Plus-Jarakta-Sans]'>Base: Musk, Vanilla</li>
+      </ul>
+      <div className='border-black border-t border-b mt-10'>
+        <p className="text-red-600 text-xl font-semibold text-center mt-5">{product.price}</p>
         <Button
-          onClick={handleAddToCart}
-          className="bg-orange-400 text-white py-2 rounded-md w-full mt-3"
-        >
-          Add to Basket
+            onClick={handleAddToCart}
+            className=" text-white py-2 border-collapse rounded-none w-full mt-5 mb-2"
+          >
+            Add to Cart
         </Button>
+        <Button
+            // onClick={handleAddToCart}
+            className=" text-black rounded-none py-2 w-full mb-5 border-t boder-b border-r border-l border-b border-black bg-white"
+          >
+            Buy Now
+        </Button>
+      </div>
+      <div className="text-center mt-4">
       </div>
     </div>
   );

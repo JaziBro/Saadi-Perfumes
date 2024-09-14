@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Provider } from 'react-redux'; // Import Redux Provider
 import { store } from './store'; // Import your Redux store
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Provider store={store}> {/* Wrap with Redux Provider */}
             {children}
         </Provider>
+        <Toaster />
       </body>
     </html>
   );

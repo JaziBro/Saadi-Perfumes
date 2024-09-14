@@ -42,8 +42,29 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="relative flex items-center justify-between px-2 py-2 bg-white">
-        <button onClick={toggleMenu} className="hover:bg-gray-100 p-1 rounded-full"></button>
+      <nav className="relative flex items-center justify-between px-2 py-2 bg-white">            
+        <Sheet open={isTopSheetOpen} onOpenChange={setIsTopSheetOpen}>
+        <SheetTrigger asChild>
+          <button className="relative flex items-center justify-between px-2 py-2 ">
+            <HiMenuAlt1 size={24}/>
+          </button>
+        </SheetTrigger>
+        <SheetContent className="p-4 bg-white w-full h-full max-h-screen top-0 fixed">
+          <SheetHeader className="flex flex-col items-center text-center mb-4">
+            <Link href="/">
+             <Image  src={logo} width={72} height={72} alt="logo"/>
+            </Link>
+          </SheetHeader>
+          {/* Add your menu content here */}
+          <div className="flex flex-col gap-4 mt-11">
+            <Link className='text-center hover:font-bold text-lg' href="/">Menu</Link>
+            <Link className="text-center hover:font-bold text-lg" href="/">Home</Link>
+            <Link className="text-center hover:font-bold text-lg" href="/about">About</Link>
+            <Link className="text-center hover:font-bold text-lg" href="/contact">Contact</Link>
+          </div>
+        </SheetContent>
+      </Sheet>
+        <button onClick={toggleMenu} className="hover:bg-gray-100 rounded-full"></button>
         
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link href="/">
@@ -99,27 +120,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <Sheet open={isTopSheetOpen} onOpenChange={setIsTopSheetOpen}>
-        <SheetTrigger asChild>
-          <button className="absolute top-0 left-0 mt-4 ml-4 p-2 rounded-full hover:bg-gray-100">
-            <HiMenuAlt1 size={24} />
-          </button>
-        </SheetTrigger>
-        <SheetContent className="p-4 bg-white w-full h-full max-h-screen top-0 fixed">
-          <SheetHeader className="flex flex-col items-center text-center mb-4">
-            <Link href="/">
-             <Image  src={logo} width={72} height={72} alt="logo"/>
-            </Link>
-          </SheetHeader>
-          {/* Add your menu content here */}
-          <div className="flex flex-col gap-4 mt-11">
-            <Link className='text-center hover:font-bold text-lg' href="/">Menu</Link>
-            <Link className="text-center hover:font-bold text-lg" href="/">Home</Link>
-            <Link className="text-center hover:font-bold text-lg" href="/about">About</Link>
-            <Link className="text-center hover:font-bold text-lg" href="/contact">Contact</Link>
-          </div>
-        </SheetContent>
-      </Sheet>
+
     </>
   );
 }
