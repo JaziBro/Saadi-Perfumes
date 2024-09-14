@@ -3,6 +3,7 @@
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../components/cart/cartSlice';
 import Image from "next/image";
+import Link from "next/link";
 import perfume1 from "../../../public/images/perfumes/perfume-1.jpg";
 import perfume2 from "../../../public/images/perfumes/perfume-2.jpg";
 import perfume3 from "../../../public/images/perfumes/perfume-3.jpg";
@@ -33,7 +34,7 @@ export default function SummerSale() {
     router.push('/under-construction');
   };
 
-  const handleRedirectToCheckout = (id: string) => {
+  const handleRedirectToCart = (id: string) => {
     router.push(`/add-to-cart?id=${id}`);
   };
 
@@ -46,7 +47,9 @@ export default function SummerSale() {
           {perfumes.map((perfume) => (
             <div key={perfume.id} className="flex-shrink-0 w-[140px] text-left space-y-2">
             <div className="relative w-[134px] h-[137px] mx-auto">
-              <Image src={perfume.image} alt={perfume.name} className="w-full h-full object-cover rounded-lg transition-transform ease-in-out hover:scale-110" />
+              <button onClick={() => handleRedirectToCart(perfume.id)} className='relative w-[134px] h-[137px] mx-auto'>
+                <Image src={perfume.image} alt={perfume.name} className="w-full h-full object-cover rounded-lg transition-transform ease-in-out hover:scale-110" />
+              </button>
             </div>
             <div className="flex justify-center">
               <Image src={perfume.rating} alt="Rating" width={80} height={10} className="w-[80px] h-4 mt-2" />
@@ -55,7 +58,7 @@ export default function SummerSale() {
             <div className="text-[15px] font-bold text-center">{perfume.price}</div>
             <div className="text-[10px] font-medium text-center">{perfume.reviews}</div>
             <Button
-              onClick={() => handleRedirectToCheckout(perfume.id)}
+              onClick={() => handleRedirectToCart(perfume.id)}
               className="mt-2 bg-black text-white rounded-md text-center w-full"
             >
               Buy Now

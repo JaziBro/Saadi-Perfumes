@@ -23,7 +23,7 @@ export default function BestSellers() {
   ];
 
   // Handle the redirection to the checkout page
-  const handleRedirectToCheckout = (id: string) => {
+  const handleRedirectToCart = (id: string) => {
     router.push(`/add-to-cart?id=${id}`);
   };
 
@@ -42,13 +42,9 @@ export default function BestSellers() {
         <div className="flex gap-6 mt-10 justify-center">
           {perfumes.map((perfume) => (
             <div key={perfume.id} className="flex-shrink-0 w-[140px] text-left space-y-2">
-              <div className="relative w-[134px] h-[137px] mx-auto">
-                <Image
-                  src={perfume.image}
-                  alt={perfume.name}
-                  className="w-full h-full object-cover rounded-lg transition-transform ease-in-out hover:scale-110"
-                />
-              </div>
+              <button onClick={() => handleRedirectToCart(perfume.id)} className='relative w-[134px] h-[137px] mx-auto'>
+                <Image src={perfume.image} alt={perfume.name} className="w-full h-full object-cover rounded-lg transition-transform ease-in-out hover:scale-110" />
+              </button>
               <div className="flex justify-center">
                 <Image src={perfume.rating} alt="Rating" width={80} height={10} className="w-[80px] h-4 mt-2" />
               </div>
@@ -56,7 +52,7 @@ export default function BestSellers() {
               <div className="text-[15px] font-bold text-center">{perfume.price}</div>
               <div className="text-[10px] font-medium text-center">{perfume.reviews}</div>
               <Button
-                onClick={() => handleRedirectToCheckout(perfume.id)}
+                onClick={() => handleRedirectToCart(perfume.id)}
                 className="mt-2 bg-black text-white rounded-md text-center w-full"
               >
                 Buy Now
