@@ -12,12 +12,14 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { ScrollArea, ScrollBar } from "../components/ui/scroll-area";
 import logo from "../../../public/images/logo.png";
+import { useRouter } from "next/navigation";
 
 
 export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTopSheetOpen, setIsTopSheetOpen] = useState(false); // New state for the top Sheet
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,6 +30,10 @@ export default function Navbar() {
     setIsTopSheetOpen(!isTopSheetOpen);
     setIsMenuOpen(false); // Close the side Sheet when the top Sheet is opened
   };
+
+  const handleRedirectToCheckout = () => {
+    router.push('/checkout');
+  }
 
   const getCartCount = () => cartItems.length;
 
@@ -113,7 +119,7 @@ export default function Navbar() {
               </div>
 
               <SheetFooter>
-                <Button className="bg-black text-white px-4 py-2 rounded-md w-full">Proceed to Checkout</Button>
+                <Button className="bg-black text-white px-4 py-2 rounded-none w-full" onClick={handleRedirectToCheckout}>Proceed to Checkout</Button>
               </SheetFooter>
             </SheetContent>
           </Sheet>
