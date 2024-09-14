@@ -5,6 +5,7 @@ import category_1 from "../../../public/images/categories/category-1.png"
 import category_2 from "../../../public/images/categories/category-2.png"
 import category_3 from "../../../public/images/categories/category-3.png"
 import category_4 from "../../../public/images/categories/category-4.png"
+import Link from "next/link";
 
 export default function ScentsForEverySeason() {
   const seasons = [
@@ -22,6 +23,8 @@ export default function ScentsForEverySeason() {
       </div>
 
       {/* Season Grid */}
+
+      <Link href="/under-construction">
       <div className="grid grid-cols-2 gap-6 mt-6">
         {seasons.map((season, idx) => (
           <div
@@ -42,7 +45,9 @@ export default function ScentsForEverySeason() {
             </div>
           </div>
         ))}
-      </div>
+      </div>     
+      </Link>
+
     </div>
   );
 }

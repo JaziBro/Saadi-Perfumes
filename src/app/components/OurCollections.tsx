@@ -3,6 +3,7 @@ import our_collections_1 from "../../../public/images/our-collections/our-collec
 import our_collections_2 from "../../../public/images/our-collections/our-collections-2.png"
 import our_collections_3 from "../../../public/images/our-collections/our-collections-3.png"
 import our_collections_4 from "../../../public/images/our-collections/our-collections-4.png"
+import Link from "next/link"
 
 const collections = [
     {
@@ -32,6 +33,7 @@ export default function OurCollections() {
       </div>
 
       {/* Collection Images */}
+      <Link href="/under-construction">
       <div className="grid grid-cols-1 gap-8 mt-10">
         {/* Loop through the collections array */}
         {collections.map((collection, idx) => (
@@ -44,13 +46,14 @@ export default function OurCollections() {
               src={collection.image}
               alt={collection.name}
             />
+ 
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-xl font-['Plus Jakarta Sans']">
               {collection.name}
             </div>
           </div>
         ))}
-      </div>
+      </div>    
+      </Link>
     </div>
-
   )
 }
