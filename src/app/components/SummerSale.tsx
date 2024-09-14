@@ -29,6 +29,10 @@ export default function SummerSale() {
     }));
   };
 
+  const handleRedirectToUnderConstruction = () => {
+    router.push('/under-construction');
+  };
+
   const handleRedirectToCheckout = (id: string) => {
     router.push(`/add-to-cart?id=${id}`);
   };
@@ -36,7 +40,7 @@ export default function SummerSale() {
   return (
     <div className="text-center py-4">
       <div className="text-xl font-bold text-black">SUMMER SALE</div>
-      <Button variant="outline" className="border-black rounded-none" onClick={() => handleRedirectToCheckout(perfumes[0].id)}>View All</Button>
+      <Button variant="outline" className="border-black rounded-none" onClick={handleRedirectToUnderConstruction}>View All</Button>
       <ScrollArea className="overflow-x-auto py-4 rounded-md">
         <div className="flex gap-6 mt-10 justify-center">
           {perfumes.map((perfume) => (

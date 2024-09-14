@@ -23,10 +23,9 @@ export default function BestSellers() {
   ];
 
   // Handle the redirection to the checkout page
-  function handleRedirectToCheckout(id: string): void {
-    // Redirect to the checkout page with the product ID in the query string
-    router.push(`/checkout?id=${id}`);
-  }
+  const handleRedirectToCheckout = (id: string) => {
+    router.push(`/add-to-cart?id=${id}`);
+  };
 
   const handleAddToCart = (perfume: any) => {
     dispatch(addToCart({
