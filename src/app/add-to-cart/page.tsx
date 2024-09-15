@@ -64,6 +64,11 @@ function ProductDetails() {
     return <div>Product not found</div>;
   }
 
+  // function to redirect to checkout page
+  const redirectToCheckout = () => {
+    router.push('/checkout');
+  };
+
   return (
     <div className="">
       <Image
@@ -92,13 +97,13 @@ function ProductDetails() {
         <p className="text-red-600 text-xl font-semibold text-center mt-5">{product.price}</p>
         <Button
             onClick={handleAddToCart}
-            className=" text-white py-2 border-collapse rounded-none w-full mt-5 mb-2"
+            className=" text-white py-2 border-collapse rounded-none w-full mt-5 mb-2 hover:scale-110 hover:bg-black"
           >
             Add to Cart
         </Button>
         <Button
-            // onClick={handleAddToCart}
-            className=" text-black rounded-none py-2 w-full mb-5 border-t boder-b border-r border-l border-b border-black bg-white"
+            onClick={redirectToCheckout}
+            className="text-black rounded-none py-2 w-full mb-5 border-t boder-b border-r border-l border-b border-black bg-white hover:scale-110 hover:bg-white"
           >
             Buy Now
         </Button>

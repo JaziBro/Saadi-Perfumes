@@ -6,6 +6,8 @@ import Categories from "./components/Categories";
 import { Gift, Headset, ThumbsUp, Star} from "lucide-react";
 import { FaArrowsSpin } from "react-icons/fa6";
 import Footer from "./components/Footer";
+import banner from "../../public/banner.jpg"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -15,6 +17,11 @@ export default function Home() {
       <div className="my-3">
         <Navbar />
         <div className="w-[34px] h-[52px]"></div>
+      </div>
+
+      {/* Banner */}
+      <div>
+        <Image alt="banner" src={banner} className="w-full h-full"></Image>
       </div>
 
       {/* Summer Sale Section */}
